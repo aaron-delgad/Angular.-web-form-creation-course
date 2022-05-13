@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AngularFormNew
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+=======
+# Angular.-web-form-creation-course
+Management of formControl, formGroup, formBuilder, validations, error handling, component library creation.
+>>>>>>> 6e42f4b16a5258bb9552e360f676273ff1273b2b
