@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="register($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input placeholder="email" formControlName="email" matInput type="email">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input placeholder="password" formControlName="password" matInput type="password">
+            <div *ngIf="form.get('password').touched && form.get('password').invalid">
+              <mat-error *ngIf="form.get('password').hasError('invalid_password')" >Debe tener un número</mat-error>
+              <mat-error *ngIf="form.get('password').hasError('pattern')" >Debe tener una letra mayúscula</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input placeholder="password" formControlName="confirmPassword" matInput type="password">
+            <div *ngIf="form.get('confirmPassword').touched && form.errors">
+              <mat-error *ngIf="form.hasError('match_password')" >Verifique que sea la misma contraseña</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-radio-group formControlName="type" >
+            <mat-radio-button value="company">Company</mat-radio-button>
+            <mat-radio-button value="customer">Company</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input placeholder="company Name" formControlName="companyName" matInput type="text">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">Registro</button>
+    </mat-card-actions>
+  </mat-card>
+
+</form>

@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-card class="button-card"><button mat-stroked-button color="warn" routerLink="/admin/category/categoryForm">Crear Categoria</button></mat-card>
+
+  <div class="row">
+  <mat-card *ngFor="let item of categories" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 example-card mx-3">
+    <mat-card-header>
+      <mat-card-title>{{item.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+    <mat-card-actions>
+      <button mat-button>Carrito</button>
+      <button mat-button>Detalle</button>
+    </mat-card-actions>
+  </mat-card>
+  </div>
+  </div>
