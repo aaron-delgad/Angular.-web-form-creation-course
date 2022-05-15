@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryComponent } from './containers/category/category.component';
 
 const routes: Routes = [
   {
@@ -15,11 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'categoryFormCreate',
-    loadChildren: () => import('./category-form/category-form.module').then(m =>m.CategoryFormModule)
+    component: CategoryComponent
   },
   {
     path: 'categoryFormEdit/:id',
-    loadChildren: () => import('./category-form/category-form.module').then(m =>m.CategoryFormModule)
+    component: CategoryComponent
   }
 ];
 

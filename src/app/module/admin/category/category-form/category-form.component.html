@@ -3,6 +3,7 @@
     <mat-card-header>
       <mat-card-title>Categoría</mat-card-title>
     </mat-card-header>
+    <img mat-card-image *ngIf="imageField.value" [src]="imageField.value" alt="image">
     <mat-card-content>
       <div class="row">
         <div class="col-xs">
@@ -19,7 +20,6 @@
       </div>
       <div class="row">
         <div class="col-xs">
-          <img *ngIf="imageField.value" [src]="imageField.value" alt="image">
             <input type="file" accept=".png, .jpg, .jpeg, .ico" multiple (change)="cargaImagen($event)" id="inputFile">
             <div class="messages" *ngIf="imageField.touched && imageField.invalid">
               <mat-error *ngIf="imageField.hasError('required')">Este campo es requerido</mat-error>
@@ -28,7 +28,10 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit" (click)="save()">Guardar Categorías</button>
+      <button mat-raised-button type="submit" (click)="save()">
+        <span *ngIf="isNew">Crear Categoría</span>
+        <span *ngIf="!isNew">Editar Categoría</span>
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

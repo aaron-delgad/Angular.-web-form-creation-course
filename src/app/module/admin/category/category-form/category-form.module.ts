@@ -20,6 +20,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+  ],
+  exports:[
+    CategoryFormComponent
   ]
 })
 export class CategoryFormModule { }

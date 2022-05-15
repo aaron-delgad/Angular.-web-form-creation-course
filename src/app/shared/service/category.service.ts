@@ -15,7 +15,7 @@ export class CategoryService {
   }
 
   getCatefory(id: string){
-
+    return this.httpCliente.get<Category>(`${environment.url_api}/categories/${id}`);
   }
 
   createCategory(data: Partial<Category>) {
