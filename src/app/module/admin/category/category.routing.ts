@@ -14,7 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./category-list/category-list.module').then(m =>m.CategoryListModule)
   },
   {
-    path: 'categoryForm',
+    path: 'categoryFormCreate',
+    loadChildren: () => import('./category-form/category-form.module').then(m =>m.CategoryFormModule)
+  },
+  {
+    path: 'categoryFormEdit/:id',
     loadChildren: () => import('./category-form/category-form.module').then(m =>m.CategoryFormModule)
   }
 ];

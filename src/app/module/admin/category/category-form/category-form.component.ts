@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { CategoryService } from 'src/app/shared/service/category.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { StorageService } from './../../../../shared/service/storage.service';
+import { MyValidators } from 'src/app/setting/utils/validators';
 
 @Component({
   selector: 'form-category-form',
@@ -12,18 +13,23 @@ import { StorageService } from './../../../../shared/service/storage.service';
 export class CategoryFormComponent implements OnInit {
 
   form!: FormGroup;
+  categoryId: string;
 
   constructor(private readonly formBuilder: FormBuilder,
               private readonly categoryService: CategoryService,
               private readonly router: Router,
-              private readonly storageService: StorageService) { this.buildForm(); }
+              private readonly storageService: StorageService,
+              private readonly activatedRoute: ActivatedRoute) { this.buildForm(); }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params: Params)=>{
+      this.categoryId = params.id;
+    })
   }
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)], MyValidators.validateCategory(this.categoryService)],
       image: ['', [Validators.required]]
     });
   }
