@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MyValidators } from 'src/app/setting/utils/validators';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/service/category.service';
 

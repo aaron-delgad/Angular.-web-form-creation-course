@@ -1,0 +1,55 @@
+<div class="center my-4">
+  <form [formGroup]="form">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Productos</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image *ngIf="imageField.value" [src]="imageField.value" alt="image">
+      <mat-card-content>
+            <mat-form-field class="example-full-width">
+              <mat-label>Nombre</mat-label>
+              <input placeholder="Nombre" formControlName="name" matInput type="text">
+              <div class="messages" *ngIf="nameField.touched && nameField.invalid">
+                <mat-error *ngIf="nameField.hasError('required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="nameField.hasError('minlength')">Debe tener como mínimo 3 caracteres</mat-error>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Precio</mat-label>
+              <input placeholder="Precio" formControlName="price" matInput type="number">
+              <div class="messages" *ngIf="priceField.touched && priceField.invalid">
+                <mat-error *ngIf="priceField.hasError('required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="priceField.hasError('price_invalid')">No debe superar los 10000</mat-error>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Categoria</mat-label>
+              <mat-select formControlName="category_id">
+                <mat-option *ngFor="let Category of categoryOption" [value]="Category._id">
+                  {{Category.name}}
+                </mat-option>
+              </mat-select>
+              <div class="messages" *ngIf="categoryField.touched && categoryField.invalid">
+                <mat-error *ngIf="categoryField.hasError('required')">Este campo es requerido</mat-error>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Descripción</mat-label>
+              <input placeholder="Description" formControlName="description" matInput type="text">
+              <div class="messages" *ngIf="descriptionField.touched && descriptionField.invalid">
+                <mat-error *ngIf="descriptionField.hasError('required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="descriptionField.hasError('minlength')">Debe tener como mínimo 10 caracteres</mat-error>
+              </div>
+            </mat-form-field>
+              <input type="file" accept=".png, .jpg, .jpeg, .ico" multiple (change)="cargaImagen($event)" id="inputFile">
+              <div class="messages" *ngIf="imageField.touched && imageField.invalid">
+                <mat-error *ngIf="imageField.hasError('required')">Este campo es requerido</mat-error>
+              </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" (click)="save()">Guardar Producto</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  </div>
+

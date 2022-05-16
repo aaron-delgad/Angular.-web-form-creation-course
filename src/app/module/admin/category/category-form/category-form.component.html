@@ -1,13 +1,12 @@
+<div class="center my-4">
 <form [formGroup]="form">
-  <mat-card >
+  <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>Categoría</mat-card-title>
     </mat-card-header>
     <img mat-card-image *ngIf="imageField.value" [src]="imageField.value" alt="image">
     <mat-card-content>
-      <div class="row">
-        <div class="col-xs">
-          <mat-form-field>
+          <mat-form-field class="example-full-width">
             <mat-label>Nombre</mat-label>
             <input placeholder="Nombre" formControlName="name" matInput type="text">
             <div class="messages" *ngIf="nameField.touched && nameField.invalid">
@@ -16,16 +15,10 @@
               <mat-error *ngIf="nameField.hasError('not_available')">Esta categoría ya existe</mat-error>
             </div>
           </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs">
             <input type="file" accept=".png, .jpg, .jpeg, .ico" multiple (change)="cargaImagen($event)" id="inputFile">
             <div class="messages" *ngIf="imageField.touched && imageField.invalid">
               <mat-error *ngIf="imageField.hasError('required')">Este campo es requerido</mat-error>
             </div>
-        </div>
-      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button type="submit" (click)="save()">
@@ -35,3 +28,4 @@
     </mat-card-actions>
   </mat-card>
 </form>
+</div>
