@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/shared/service/storage.service';
 import { MyValidators } from 'src/app/setting/utils/validators';
 import { ProductService } from 'src/app/shared/service/product.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/service/category.service';
 
@@ -15,15 +15,32 @@ import { CategoryService } from 'src/app/shared/service/category.service';
 export class ProductCreateComponent implements OnInit {
   categoryOption: Category[] = [];
   form: FormGroup;
+  isNew = true;
+  producId: string;
+
+  states = [
+    {name: 'Arizona', abbrev: 'AZ'},
+    {name: 'California', abbrev: 'CA'},
+    {name: 'Colorado', abbrev: 'CO'},
+    {name: 'New York', abbrev: 'NY'},
+    {name: 'Pensylvania', abbrev: 'PA'}
+  ];
+
   constructor(private readonly formBuilder: FormBuilder,
               private readonly storageService: StorageService,
               private readonly productService: ProductService,
               private readonly categoryService: CategoryService,
-              private readonly router: Router) { this.buildForm(); }
+              private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute) {  }
 
   ngOnInit(): void {
-    this.categoryService.getAllCategories().subscribe(resp =>{
-      this.categoryOption = resp;
+   this.loadMatSelect();
+   this.buildForm();
+    this.activatedRoute.params.subscribe((params: Params) =>{
+      if(params){
+        this.productId(params.id)
+        this.producId = params.id;
+      }
     });
    }
 
@@ -33,7 +50,23 @@ export class ProductCreateComponent implements OnInit {
       price: ['', [Validators.required, MyValidators.isPriceValid]],
       category_id: ['', Validators.required],
       image: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(10)]]
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      state: ['', [Validators.required]]
+    });
+  }
+
+  private loadMatSelect(){
+    this.categoryService.getAllCategories().subscribe(resp =>{
+      this.categoryOption = resp;
+    });
+  }
+
+  private productId(id: string){
+    this.productService.productId(id).subscribe(resp =>{
+      this.form.patchValue({
+        ...resp,
+        state: this.states[2]});
+      this.isNew = false;
     });
   }
 
@@ -59,10 +92,17 @@ export class ProductCreateComponent implements OnInit {
 
   save() {
     if(this.form.valid){
-      this.productService.productSave(this.form.value).subscribe(resp =>{
-        console.log(resp);
-        this.router.navigate(['/admin/product']);
-      })
+      console.log(this.form.value);
+      // if(this.isNew){
+      //   this.productService.productSave(this.form.value).subscribe(() =>{
+      //     this.router.navigate(['/admin/product']);
+      //   });
+      // }else{
+      //   this.productService.updateProduct(this.producId, this.form.value).subscribe(()=>{
+      //     this.router.navigate(['/admin/product']);
+      //   });
+      // }
+
     }else{
       this.form.markAllAsTouched();
     }

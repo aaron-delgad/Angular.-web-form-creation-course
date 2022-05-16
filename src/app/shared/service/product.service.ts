@@ -17,6 +17,14 @@ export class ProductService {
   }
 
   productSave(body: Product){
-    return this.httpClient.post(`${this.productUrl}/products`,body);
+    return this.httpClient.post<Product>(`${this.productUrl}/products`,body);
+  }
+
+  productId(id: string){
+    return this.httpClient.get<Product>(`${this.productUrl}/products/${id}`);
+  }
+
+  updateProduct(id: string, data: Partial<Product>){
+    return this.httpClient.put<Product>(`${this.productUrl}/products/${id}`, data);
   }
 }

@@ -6,7 +6,11 @@ const routes: Routes = [
     path: '', redirectTo: 'productList', pathMatch: 'full',
   },
   {
-    path: 'product_create',
+    path: 'productCreate',
+    loadChildren: () => import('./product-create/product-create.module').then(m =>m.ProductCreateModule)
+  },
+  {
+    path: 'productUpdate/:id',
     loadChildren: () => import('./product-create/product-create.module').then(m =>m.ProductCreateModule)
   },
   {

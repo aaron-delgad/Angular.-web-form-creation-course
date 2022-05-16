@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'admin', pathMatch: 'full'
+    path: '', redirectTo: 'web', pathMatch: 'full'
   },
   {
     path: 'auth',
@@ -12,7 +12,12 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./module/admin/admin.module').then(m =>m.AdminModule)
+  },
+  {
+    path: 'web',
+    loadChildren: () => import('./module/web/web.module').then(m =>m.WebModule)
   }
+
 ];
 
 @NgModule({

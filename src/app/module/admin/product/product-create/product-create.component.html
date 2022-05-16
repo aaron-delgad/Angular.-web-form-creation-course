@@ -34,6 +34,17 @@
               </div>
             </mat-form-field>
             <mat-form-field class="example-full-width">
+              <mat-label>Categoria</mat-label>
+              <mat-select formControlName="state">
+                <mat-option *ngFor="let state of states" [value]="state">
+                  {{state.name}}
+                </mat-option>
+              </mat-select>
+              <div class="messages" *ngIf="categoryField.touched && categoryField.invalid">
+                <mat-error *ngIf="categoryField.hasError('required')">Este campo es requerido</mat-error>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
               <mat-label>Descripción</mat-label>
               <input placeholder="Description" formControlName="description" matInput type="text">
               <div class="messages" *ngIf="descriptionField.touched && descriptionField.invalid">
@@ -47,7 +58,10 @@
               </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button type="submit" (click)="save()">Guardar Producto</button>
+        <button mat-raised-button type="submit" (click)="save()">
+          <span *ngIf="isNew">Crear Producto</span>
+          <span *ngIf="!isNew">Editar Producto</span>
+        </button>
       </mat-card-actions>
     </mat-card>
   </form>
