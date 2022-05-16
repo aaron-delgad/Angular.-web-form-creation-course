@@ -31,10 +31,17 @@ export class OrderComponent implements OnInit {
   }
 
   AddAddressField(){
-    
+    this.addressField.push(this.createAddressField()); //se puede agregar un formGroup o un FormControl
   }
 
-  get address(){
+  private createAddressField(){
+    return this.formBuilder.group({
+      zip: ['', Validators.required],
+      text: ['', Validators.required]
+    });
+  }
+
+  get addressField(){
     return this.form.get('address') as FormArray;
   }
 

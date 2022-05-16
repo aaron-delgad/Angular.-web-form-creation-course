@@ -1,4 +1,4 @@
-<mat-horizontal-stepper>
+<!-- <mat-horizontal-stepper>
   <mat-step>
     <ng-template matStepLabel>Sus productos</ng-template>
     <div *ngIf="(products$ | async) as products">
@@ -24,11 +24,36 @@
 
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Datos personales</ng-template>
-    <h1>contenifo</h1>
-  </mat-step>
+    <ng-template matStepLabel>Datos personales</ng-template> -->
+    <form [formGroup]="form">
+      <mat-card class="example-card">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input placeholder="Nombre" formControlName="name" matInput type="text">
+          </mat-form-field>
+        <button mat-raised-button color="primary" type="button" (click)="AddAddressField()">Add address</button>
+          <div formArrayName="address" *ngFor="let address of addressField.controls; let i=index">
+            <div [formGroupName]="i">
+              <mat-form-field class="example-full-width">
+                <mat-label>ZipCode</mat-label>
+                <input placeholder="zip" formControlName="zip" matInput type="text">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Text</mat-label>
+                <input placeholder="text" formControlName="text" matInput type="text">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button type="submit">Next</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  <!-- </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pago</ng-template>
     <h1>contenifo</h1>
   </mat-step>
-</mat-horizontal-stepper>
+</mat-horizontal-stepper> -->

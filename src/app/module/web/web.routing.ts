@@ -4,14 +4,14 @@ import { WebComponent } from './web.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'web', pathMatch: 'full',
+    path: '', redirectTo: 'webOrder', pathMatch: 'full',
   },
   {
-    path: 'web',
+    path: 'webOrder',
     component: WebComponent,
     children: [
       {
-        path: 'order',
+        path: '',
         loadChildren: () => import('./order/order.module').then(m =>m.OrderModule)
       }
     ]
