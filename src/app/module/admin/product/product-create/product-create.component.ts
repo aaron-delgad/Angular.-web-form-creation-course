@@ -51,8 +51,12 @@ export class ProductCreateComponent implements OnInit {
       category_id: ['', Validators.required],
       image: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      state: ['', [Validators.required]]
+      state: ['', [Validators.required]],
+      stock: [200, [Validators.required]],
     });
+    this.form.get('stock').valueChanges.subscribe(resp =>{
+      console.log(resp);
+    })
   }
 
   private loadMatSelect(){

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './../../../shared/models/product.model';
 import { CartService } from './../../../shared/service/cart.service';
-import { FormGroup, FormBuilder, ValidationErrors, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'form-order',
@@ -45,4 +45,7 @@ export class OrderComponent implements OnInit {
     return this.form.get('address') as FormArray;
   }
 
+  save() {
+    console.log(this.form.value);
+  }
 }

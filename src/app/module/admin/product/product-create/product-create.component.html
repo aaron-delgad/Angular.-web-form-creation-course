@@ -44,6 +44,9 @@
                 <mat-error *ngIf="categoryField.hasError('required')">Este campo es requerido</mat-error>
               </div>
             </mat-form-field>
+
+            <form-stepper formControlName="stock"></form-stepper>
+
             <mat-form-field class="example-full-width">
               <mat-label>Descripción</mat-label>
               <input placeholder="Description" formControlName="description" matInput type="text">

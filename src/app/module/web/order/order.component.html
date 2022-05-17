@@ -1,4 +1,4 @@
-<!-- <mat-horizontal-stepper>
+<mat-horizontal-stepper>
   <mat-step>
     <ng-template matStepLabel>Sus productos</ng-template>
     <div *ngIf="(products$ | async) as products">
@@ -24,7 +24,7 @@
 
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Datos personales</ng-template> -->
+    <ng-template matStepLabel>Datos personales</ng-template>
     <form [formGroup]="form">
       <mat-card class="example-card">
         <mat-card-content>
@@ -47,13 +47,13 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button type="submit">Next</button>
+          <button mat-raised-button type="submit" (click)="save()">Next</button>
         </mat-card-actions>
       </mat-card>
     </form>
-  <!-- </mat-step>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pago</ng-template>
     <h1>contenifo</h1>
   </mat-step>
-</mat-horizontal-stepper> -->
+</mat-horizontal-stepper>
