@@ -6,3 +6,8 @@
   buscador:
   {{currenField.value}}
 </p>
+<div class="images-grid">
+  <div class="image" *ngFor="let result of results">
+    <img [src]="result.url" alt="">
+  </div>
+</div>
