@@ -2,6 +2,8 @@ export const environment = {
   production: false,
 
   url_api: 'https://store.nicobytes.site/api',
+  key: 'VqIfoWoHPxnvyMK2h4DyFBZ17bIqpnyK',
+  url_giphy: 'https://api.giphy.com/v1/gifs/search?q={query}&api_key={keygif}&limit=12',
 
   firebaseConfig: {
     apiKey: "AIzaSyBPePpW2J-qhlQiaslM7BqoOzqpflyP9uY",

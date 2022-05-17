@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { APIGIFService } from './../../../shared/service/apigif.service';
 
 @Component({
   selector: 'form-search-gif',
@@ -10,9 +11,14 @@ export class SearchGifComponent implements OnInit {
 
   currenField = new FormControl();
 
-  constructor() { }
+  constructor(private readonly apigifService: APIGIFService) { }
 
   ngOnInit(): void {
+    this.currenField.valueChanges.subscribe(resp => {
+      this.apigifService.getData(resp).subscribe(res => {
+        console.log(res);
+      });
+    });
   }
 
 }
