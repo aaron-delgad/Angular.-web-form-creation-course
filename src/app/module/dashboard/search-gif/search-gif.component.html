@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+  <mat-label>Buscador</mat-label>
+  <input matInput placeholder="Nombre" [formControl]="currenField" type="search" required>
+</mat-form-field>
+<p>
+  buscador:
+  {{currenField.value}}
+</p>
